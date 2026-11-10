@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8fc">
+  <title>EchoBand — Home follow-up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="EchoBand home" id="homeLink"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>Echo<span class="brand-light">Band</span><small>HOME FOLLOW-UP</small></span></a>
+      <div class="header-tools">
+        <span class="connection"><span class="live-dot"></span><span id="connectionLabel">Strap connected <span class="divider">·</span> Simulated</span></span>
+        <button class="condition-switch" id="changeCondition" type="button" hidden>Change condition <span aria-hidden="true">↗</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome-view" id="welcomeView">
+        <div class="welcome-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR RECOVERY, IN CONTEXT</div>
+          <h1>A little more confidence<br>in <em>your own</em> baseline.</h1>
+          <p>EchoBand helps you follow changes in heart and breathing signals at home, so you know when to keep your routine and when to check in with your care team.</p>
+          <div class="safety-banner"><span class="safety-icon">!</span><span>Chest pain, breathlessness or fainting need immediate care, whatever this app shows.</span></div>
+        </div>
+        <section class="condition-picker" aria-labelledby="pickTitle">
+          <div class="picker-top"><div><span class="step-label">GET STARTED <b>01 / 01</b></span><h2 id="pickTitle">What are you following up?</h2><p>Choose a pathway to see a personal baseline comparison.</p></div><span class="picker-symbol" aria-hidden="true">⌁</span></div>
+          <div class="condition-options">
+            <button class="condition-card" data-condition="cardiac" type="button"><span class="condition-icon heart-icon" aria-hidden="true">♡</span><span class="condition-copy"><strong>Cardiac recovery</strong><small>Follow heart and breathing patterns</small></span><span class="card-arrow" aria-hidden="true">→</span></button>
+            <button class="condition-card" data-condition="tb" type="button"><span class="condition-icon lung-icon" aria-hidden="true">◌</span><span class="condition-copy"><strong>Tuberculosis follow-up</strong><small>Follow cough and breathing patterns</small></span><span class="card-arrow" aria-hidden="true">→</span></button>
+          </div>
+          <div class="picker-note"><span aria-hidden="true">◷</span> Your readings are compared with your own usual pattern.</div>
+        </section>
+        <div class="welcome-foot"><span>PCG <b>·</b> SCG <b>·</b> LUNG SOUNDS <b>·</b> MOTION</span><span>Designed for home follow-up</span></div>
+      </section>
+
+      <section class="dashboard-view" id="dashboardView" hidden>
+        <div class="dash-heading"><div><div class="eyebrow"><span class="eyebrow-line"></span> PERSONAL BASELINE MONITORING</div><h1 id="conditionTitle">Cardiac recovery</h1><p>Signal patterns are compared with your usual readings.</p></div><div class="patient-chip"><span class="patient-avatar">Y</span><span><b>Your profile</b><small>Baseline established</small></span><span class="verified" aria-label="Baseline ready">✓</span></div></div>
+        <div class="safety-banner dashboard-safety"><span class="safety-icon">!</span><span>Chest pain, breathlessness or fainting need immediate care, whatever this app shows.</span></div>
+
+        <div class="section-row scenario-row"><div><h2>Explore a scenario</h2><p>See how patterns change against your baseline.</p></div><div class="scenario-controls" role="group" aria-label="Choose a simulated scenario"><button type="button" class="scenario-button active" data-scenario="normal"><span class="status-dot green"></span> Normal <kbd>1</kbd></button><button type="button" class="scenario-button" data-scenario="stress"><span class="status-dot amber"></span> Partial stress <kbd>2</kbd></button><button type="button" class="scenario-button" data-scenario="panic"><span class="status-dot red"></span> Marked change <kbd>3</kbd></button><button type="button" class="scenario-button realtime-button" id="realtimeButton"><span class="status-dot blue"></span> Real time <kbd>4</kbd></button></div></div>
+        <div class="realtime-tools" id="realtimeTools" hidden><span class="realtime-pill" id="realtimeStatus" aria-live="polite"><i></i><b>Not connected</b></span><label for="realtimeCode">Pairing code <input id="realtimeCode" type="text" inputmode="text" autocomplete="off" maxlength="10" placeholder="From relay startup"></label><span class="realtime-hint" id="realtimeHint">Start the relay, then enter the printed code and choose Real time.</span><div class="calibration" id="calibration" hidden><span id="calibrationText">Learning your normal</span><div class="progress-track"><i id="calibrationProgress"></i></div><b id="calibrationPercent">0%</b></div></div>
+
+        <section class="triage-card" id="triageCard" aria-live="polite">
+          <div class="triage-icon" id="triageIcon">✓</div><div class="triage-main"><div class="triage-kicker" id="triageKicker">YOUR PATTERN</div><h2 id="verdict">Matches your usual pattern. Keep your routine.</h2><p id="reason">Your signals are close to your personal baseline.</p></div><div class="triage-next"><span class="next-label">SUGGESTED NEXT STEPS</span><ol id="nextSteps"></ol></div>
+        </section>
+
+        <section class="signal-section">
+          <div class="section-row"><div><h2>Live signal view</h2><p>Three strap signals, shown as a rolling sample.</p></div><div class="wave-key"><span><i class="key-pcg"></i> PCG</span><span><i class="key-scg"></i> SCG</span><span><i class="key-lung"></i> Lung</span></div></div>
+          <div class="wave-grid" id="waveGrid">
+            <article class="wave-card"><div class="wave-card-head"><div><span class="wave-index">01</span><h3>Heart sounds <small>PCG</small></h3></div><span class="wave-live"><i></i> LIVE</span></div><canvas id="pcgCanvas" aria-label="Simulated phonocardiography waveform"></canvas><div class="wave-foot"><span>S1 <b>lub</b> · S2 <b>dub</b></span><span>AMPLITUDE <b id="pcgMeta">—</b></span></div></article>
+            <article class="wave-card"><div class="wave-card-head"><div><span class="wave-index">02</span><h3>Chest vibration <small>SCG</small></h3></div><span class="wave-live"><i></i> LIVE</span></div><canvas id="scgCanvas" aria-label="Simulated seismocardiography waveform"></canvas><div class="wave-foot"><span>BEAT-ALIGNED MOTION</span><span>VARIABILITY <b id="scgMeta">—</b></span></div></article>
+            <article class="wave-card"><div class="wave-card-head"><div><span class="wave-index">03</span><h3>Lung sounds <small>BREATH</small></h3></div><span class="wave-live"><i></i> LIVE</span></div><canvas id="lungCanvas" aria-label="Simulated lung sound waveform"></canvas><div class="wave-foot"><span>BREATH CYCLE</span><span>NOISE <b id="lungMeta">—</b></span></div></article>
+          </div>
+          <div class="analysis-card"><div class="analysis-title"><span class="analysis-icon">▦</span><span><b>Signal analysis</b><small>Wavelet-style time–frequency view</small></span></div><canvas id="scaloCanvas" aria-label="Simulated signal scalogram"></canvas><div class="scale-labels"><span>LOW FREQUENCY</span><span>TIME →</span><span>HIGH FREQUENCY</span></div><div class="analysis-source">Displaying <b id="scaloSource">PCG</b></div></div>
+        </section>
+
+        <section class="parameters-section"><div class="section-row"><div><h2>What changed</h2><p>Largest movements from your personal baseline.</p></div><span class="baseline-tag"><span></span> Compared with your baseline</span></div><div class="changes-panel" id="changesPanel"></div><div class="section-row parameter-heading"><div><h2>Signal parameters</h2><p>Values are illustrative and based on simulated strap signals.</p></div><span class="parameter-count" id="parameterCount"></span></div><div class="parameter-grid" id="parameterGrid"></div></section>
+
+        <section class="bottom-grid"><article class="log-card"><div class="panel-heading"><div><span class="panel-icon">◷</span><span><h2>Alert log</h2><small>Scenario status changes</small></span></div><span class="log-count" id="logCount">0 events</span></div><div class="log-list" id="logList"></div></article><article class="share-card"><span class="share-icon">↗</span><div><h2>Share a summary</h2><p>Copy a plain-text snapshot to discuss with your clinician.</p><button class="share-button" id="shareButton" type="button">Copy report <span>↗</span></button><span class="copy-note" id="copyNote" aria-live="polite"></span></div></article></section>
+        <p class="keyboard-hint">KEYBOARD SHORTCUTS <kbd>1</kbd> NORMAL <kbd>2</kbd> PARTIAL STRESS <kbd>3</kbd> MARKED CHANGE <kbd>4</kbd> REAL TIME</p>
+      </section>
+    </main>
+    <footer><span class="footer-brand">ECHOBAND</span><span id="footerDisclaimer">Prototype with simulated data. Decision-support aid, not a diagnostic device.</span><span class="footer-version">DEMO · 01</span></footer>
+  </div>
+  <script src="app.js"></script>
+  <script src="realtime.js"></script>
+</body>
+</html>

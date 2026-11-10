@@ -1,0 +1,8 @@
+bridge/node_modules/
+watch-app/.gradle/
+watch-app/.idea/
+watch-app/local.properties
+watch-app/app/build/
+watch-app/build/
+watch-app/.kotlin/
+watch-app/app/libs/*.aar

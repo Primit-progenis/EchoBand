@@ -1,0 +1,1 @@
+Place the Samsung Health Sensor SDK file `samsung-health-sensor-api.aar` in this folder. Samsung distributes the AAR from its official Health Sensor SDK download page; it is not included in this project.

@@ -1,0 +1,9 @@
+{
+  "name": "echoband-local-relay",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local-only WebSocket relay for the EchoBand demo",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
